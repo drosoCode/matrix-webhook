@@ -1,0 +1,13 @@
+version: '3'
+services:
+  matrix-webhook:
+    image: ghcr.io/drosocode/matrix-webhook:latest
+    volumes:
+      - ./store:/data/store
+      - ./config.yaml:/data/config.yaml
+    labels:
+        - traefik.enable=true
+        - traefik.http.services.matrix_wh.loadbalancer.server.port=8080
+        - traefik.http.routers.matrix_wh.rule=Host(`matrixwh.domain.tld`)
+        - traefik.http.routers.matrix_wh.entrypoints=https
+        - traefik.http.routers.matrix_wh.tls.certresolver=ovh

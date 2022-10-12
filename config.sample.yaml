@@ -1,0 +1,31 @@
+# this is the bot-specific configuration
+# you can add one entry per webhook url
+bots:
+  # each key is the url used to access your webhook
+  # for example if your webhook gateway is available at sub.domain.tld,
+  # to run this webhook, you will need to POST a request to sub.domain.tld/yourcustomwebhookurl
+  "yourcustomwebhookurl":
+    # the formatter allows to select the script that will parse your webhook request
+    # they are available under the formatters/ folder
+    # you can also create your own and mount it in this folder, it will be automatically imported
+    formatter: discord
+    # this is the full username for the bot that will send the messages
+    # you need to create this account before adding it here
+    user: "@yourbotaccountname:server.tld"
+    # this is the password for this account
+    password: yourbotaccountpassword
+    # this is the room ID (room name will not work) used to send the messages received by the webhook
+    # using Elements, you can find this by going into the settings of your room in the advanced section
+    room: "!yourroomid:server.tld"
+    # ignore_unverified allows to send a message even if all the sessions are not verified
+    # you will likely need to enable this as currently, cross-signing is not supported by matrix-nio
+    ignore_unverified: true
+
+# this is the global configuration
+matrix:
+  # this is the url of your homeserver
+  homeserver: https://matrix.server.tld
+  # this is the path where the e2e related files will be stored
+  store_path: /data/store
+  # this is the device_id that will be used to identifiy this session on your bots accounts
+  device_id: matrix_webhook
